@@ -17,9 +17,9 @@ class coinarea {
 	
 	// This function is made to allow calling of the API easier.
 	// It handles formatting the correct array data with correct key names.
-	// It does not include all of the API functions supported by CoinArea, but that does not matter.
+	// It does not have all of the API functions supported by CoinArea, but that does not matter.
 	// For one we are only using these two, and second if you wanted to use the others it can!
-	// Okay, so it can it also use coin_info (as it requires no args) and also generate_address (but without label support).
+	// Okay, so it can also use coin_info (as it requires no args) and also generate_address (but without address or label support).
 	function __call($method, $args) {
 		switch($method) {
 			case 'get_balance':
@@ -48,6 +48,7 @@ class coinarea {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: '.strlen($json)));
 			$result = curl_exec($ch);
+			curl_close($ch);
 			return json_decode($result, true);
 		// Curl is not enabled, we will just use file_get_contents GET request.
 		} else {
