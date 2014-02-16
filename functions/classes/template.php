@@ -27,7 +27,8 @@ class template {
 	}
 
 	function getTitle($string) {
-		$titles = array('index.php' => 'Home');
+		$titles = array('index.php' => 'Home',
+				'terms.php' => 'Terms of Service');
 		$raw = explode('/', $_SERVER['PHP_SELF']);
 		$script = $raw[count($raw)-1];
 		if ($string) {
