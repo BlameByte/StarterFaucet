@@ -7,6 +7,17 @@ $loader = new loader();
 $api = $loader->load('coinarea');
 $template = $loader->load('template');
 $config = $loader->load('configuration');
+$log = $loader->load('log');
+$address = $config->faucet_address();
+$getbalance = $api->get_balance($address);
+$received = $getbalance['balance'];
+$sent = $log->getLog('sent');
+// This is to tackle an issue with setting the faucet_address.
+if ($config->faucet_address() != '') {
+	$balance = $received - $sent;
+} else {
+	$balance = $received;
+}
 if (isset($_GET['next'])) {
 	$useraddr = $_POST['address'];
 	$terms = $_POST['terms'];
@@ -22,13 +33,12 @@ if (isset($_GET['next'])) {
 		}
 		if ($continue) {
 			$amount = $config->faucet_amount();
-			$address = $config->faucet_address();
-			$getbalance = $api->get_balance($address);
-			if ($getbalance['balance'] >= $amount) {
-				$log = $loader->load('log');
+			if ($balance >= $amount) {
 				if ($log->checkWrite()) {
 					$send = $api->send_funds($useraddr, $amount);
 					if ($send['success']) {
+						// This updates the log to show how much is sent.
+						$log->saveLog('sent', $sent + $amount);
 						$msg = 'Successful, you should see the funds in your wallet shortly.';
 					} else {
 						$msg = 'Your funds were unable to be sent, maybe due to an incorrect address or an issue with the set up of this faucet. Contact the faucet owner for support.';
@@ -53,11 +63,7 @@ echo '<div>'.$msg.'</div>
 <tr>
 <td align="right">'.$config->coin_name().' Balance:</td>';
 if ($config->show_balance()) {
-	$address = $config->faucet_address();
-	$getbalance = $api->get_balance($address);
-	if ($getbalance['success']) {
-		$balance = $getbalance['balance'];
-	} else {
+	if (!$received['success']) {
 		$balance = 'Unknown';
 	}
 	echo '<td>'.$balance.' '.$config->coin_code().'</td>';
