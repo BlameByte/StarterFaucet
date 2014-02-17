@@ -39,6 +39,9 @@ if (isset($_GET['next'])) {
 					if ($send['success']) {
 						// This updates the log to show how much is sent.
 						$log->saveLog('sent', $sent + $amount);
+						// Unset all of the variables upon success so that the fields are no long filled in.
+						unset($useraddr);
+						unset($terms);
 						$msg = 'Successful, you should see the funds in your wallet shortly.';
 					} else {
 						$msg = 'Your funds were unable to be sent, maybe due to an incorrect address or an issue with the set up of this faucet. Contact the faucet owner for support.';
