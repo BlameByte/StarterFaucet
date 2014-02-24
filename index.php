@@ -66,7 +66,7 @@ echo '<div>'.$msg.'</div>
 <tr>
 <td align="right">'.$config->coin_name().' Balance:</td>';
 if ($config->show_balance()) {
-	if (!$received['success']) {
+	if (!$getbalance ['success']) {
 		$balance = 'Unknown';
 	}
 	echo '<td>'.$balance.' '.$config->coin_code().'</td>';
