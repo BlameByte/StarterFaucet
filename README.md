@@ -38,9 +38,12 @@ Donations
 
 Starter Faucet is provided free of charge, so we never require any payments. But if you wish to donate to the project to allow it to stay updated and add new features, then you are free to.
 
-BTC Donation: 1epTzdH2NHN3FQSa3cDa4c1kQAHCd9nv3
-LTC Donation: LWbRLdYvRagSREf7z5WDdAS1NuiQG5YSBe
-DOGE Donation: DTtsUnhbBF3wGgbngoowhSppnr5y8JQtCE
+BTC Donation: [1epTzdH2NHN3FQSa3cDa4c1kQAHCd9nv3](bitcoin:1epTzdH2NHN3FQSa3cDa4c1kQAHCd9nv3)
+
+LTC Donation: [LWbRLdYvRagSREf7z5WDdAS1NuiQG5YSBe](litecoin:LWbRLdYvRagSREf7z5WDdAS1NuiQG5YSBe)
+
+DOGE Donation: [DTtsUnhbBF3wGgbngoowhSppnr5y8JQtCE](dogecoin:DTtsUnhbBF3wGgbngoowhSppnr5y8JQtCE)
+
 
 We only accept Bitcoins, Litecoins, and Dogecoins right now. If you are using another coin and would like to donate we recommend exchanging it into a coin above. Donations ensure that the project is kept alive and allows more time to be put into working on the project.
 
