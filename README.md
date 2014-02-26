@@ -11,7 +11,7 @@ To get started and set up Starter Faucet all you have to do is to first upload a
 Requirements
 =============
 
-* CoinArea API Key
+* API Key (Coinbase)
 * Webhost which supports PHP
 * (Optional but recommended) reCAPTCHA private / public key
 
