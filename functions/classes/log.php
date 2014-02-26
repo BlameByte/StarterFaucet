@@ -29,9 +29,9 @@ class log {
 	return false;
 	}
 	
-	// This function is like two in one, it basically checks the IP and then logs that they requested.
-	// Since of this the balance of the wallet should be checked BEFORE running this function, as otherwise they will get nothing and have to wait.
-	function checkWrite() {
+	// This checks the IP to the wait period in place, to make sure they are not trying to make requests too quick.
+	// It checks to see if the file exists or if the time in the file is more than the current wait period.
+	function checkIP() {
 		$time = time();
 		require_once('functions/loader.php');
 		$loader = new loader();
@@ -41,10 +41,18 @@ class log {
 		// This checks to see if the log with the wait_period is within time.
 		// Or if the log does not exist (meaning the IP address has never recieved funds from us.
 		if (empty($log) || $log + $config->wait_period() < $time) {
-			$this->saveLog($ip, $time);
 			return true;
 		}
-		return false;
+	}
+	
+	// This saves in the logs to say that the user has received their funds at this time.
+	function logIP() {
+		$time = time();
+		require_once('functions/loader.php');
+		$loader = new loader();
+		$config = $loader->load('configuration');
+		$ip = $_SERVER[$config->ip_forward()];
+		$this->saveLog($ip, $time);
 	}
 }
 ?>

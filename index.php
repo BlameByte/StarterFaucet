@@ -4,20 +4,11 @@
 // However this page is a little messy coded, maybe could be cleaned up just a little.
 require_once('functions/loader.php');
 $loader = new loader();
-$api = $loader->load('coinarea');
+$api = $loader->load('selectapi');
 $template = $loader->load('template');
 $config = $loader->load('configuration');
 $log = $loader->load('log');
-$address = $config->faucet_address();
-$getbalance = $api->get_balance($address);
-$received = $getbalance['balance'];
-$sent = $log->getLog('sent');
-// This is to tackle an issue with setting the faucet_address.
-if ($config->faucet_address() != '') {
-	$balance = $received - $sent;
-} else {
-	$balance = $received;
-}
+$balance = $api->getBalance();
 if (isset($_GET['next'])) {
 	$useraddr = $_POST['address'];
 	$terms = $_POST['terms'];
@@ -34,20 +25,20 @@ if (isset($_GET['next'])) {
 		if ($continue) {
 			$amount = $config->faucet_amount();
 			if ($balance >= $amount) {
-				if ($log->checkWrite()) {
-					$send = $api->send_funds($useraddr, $amount);
-					if ($send['success']) {
+				if ($log->checkIP()) {
+					$send = $api->sendMoney($useraddr, $amount);
+					if ($send->success) {
+						$sent = $log->getLog('sent');
 						// This updates the log to show how much is sent.
 						$log->saveLog('sent', $sent + $amount);
-						// Unset all of the variables upon success so that the fields are no long filled in.
-						unset($useraddr);
-						unset($terms);
+						// Update the log to put the wait period in place.
+						$this->logIP();
 						$msg = 'Successful, you should see the funds in your wallet shortly.';
 					} else {
-						$msg = 'Your funds were unable to be sent, maybe due to an incorrect address or an issue with the set up of this faucet. Contact the faucet owner for support.';
+						$msg = 'Your funds were unable to be sent, please try again later.';
 					}
 				} else {
-					$msg = 'You must wait more time until you can receive funds again.';
+					$msg = 'Please wait more time to request more funds.';
 				}
 			} else {
 				$msg = 'There are currently not enough funds in the faucet.';
@@ -62,11 +53,10 @@ if (isset($_GET['next'])) {
 $template->header();
 echo '<div>'.$msg.'</div>
 <form action="index.php?next" method="post">
-<table style="width:75%">
-<tr>
-<td align="right">'.$config->coin_name().' Balance:</td>';
+<table style="width:75%">';
 if ($config->show_balance()) {
-	if (!$getbalance ['success']) {
+	echo '<tr><td align="right">'.$config->coin_name().' Balance:</td>';
+	if (empty($balance) || is_nan($balance)) {
 		$balance = 'Unknown';
 	}
 	echo '<td>'.$balance.' '.$config->coin_code().'</td>';
