@@ -33,6 +33,9 @@ if (isset($_GET['next'])) {
 						$log->saveLog('sent', $sent + $amount);
 						// Update the log to put the wait period in place.
 						$this->logIP();
+						// Unset the variables to clear the form.
+						unset($useraddr);
+						unset($amount);
 						$msg = 'Successful, you should see the funds in your wallet shortly.';
 					} else {
 						$msg = 'Your funds were unable to be sent, please try again later.';
