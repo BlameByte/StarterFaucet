@@ -1,0 +1,33 @@
+body {
+	width: 800px;
+	margin: auto;
+}
+
+h1 {
+	margin-top: 0px;
+	margin-left: 5px;
+}
+
+h1 a {
+	color: black;
+	text-decoration: none;
+}
+
+#content {
+	border: 1px solid black;
+	margin: 5px;
+}
+
+#footer {
+	border: 1px dotted black;
+	text-align:center;
+	margin:5px;
+}
+
+.errormsg {
+	border: 1px solid red;
+	background-color: #FFFFF;
+	color: red;
+	margin: 5px;
+	padding: 5px;
+}

@@ -1,6 +1,7 @@
 <?php
 // Starter faucet configration, For now here is where you set all of the options.
-// An example of what is set in here is, your CoinArea API key, the coin name and coin prefix.
+// An example of what is set in here is, your API key, the faucet name, etc. It is basically a master control file for the faucet.
+// It is recommended that you read through this file, to make sure you have set everything and that you understand some requirements of certain options.
 class configuration {
 	// All this currently does is runs getConfig, this is pretty nice if you like to use $config->api_key() for example.
 	// It is possible to use getConfig and achieve the same, but using the call function makes it feel more like variables.
@@ -17,7 +18,7 @@ class configuration {
 		// Which ever you choose you must make sure that you sign up for an account and get an API key to make it work.
 		// Coinbase.com is a BTC API to use it please input "coinbase", sign up for an API key here: https://coinbase.com/account/api
 		// Please note that for coinbase when setting up the API key select the HMAC SHA256 option, and the permissions: balance, send.
-		'api_provider' => 'coinbase',
+		'api_provider' => 'API_PROVIDER',
 		
 		// Here is where your API key goes, this allow the faucet to send funds and get the balance of the funds in your account.
 		// If you are using Coinbase API, make sure you put the api secret below, and select: balance, addresses, send.

@@ -54,8 +54,10 @@ if (isset($_GET['next'])) {
 		}
 }
 $template->header();
-echo '<div>'.$msg.'</div>
-<form action="index.php?next" method="post">
+if (isset($msg)) {
+	echo '<div class="errormsg">'.$msg.'</div>';
+}
+echo '<form action="index.php?next" method="post">
 <table style="width:75%">';
 if ($config->show_balance()) {
 	echo '<tr><td align="right">'.$config->coin_name().' Balance:</td>';

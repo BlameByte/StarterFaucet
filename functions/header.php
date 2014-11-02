@@ -7,27 +7,7 @@ $config = $loader->load('configuration');
 ?>
 <html>
 <head>
-<style>
-body {
-	width: 800px;
-	margin: auto;
-}
-
-h1 {
-	margin-top: 0px;
-	margin-left: 5px;
-}
-
-h1 a {
-	color: black;
-	text-decoration: none;
-}
-
-#content {
-	margin: 5px;
-	border: 1px solid black;
-}
-</style>
+<link href="assets/style.css" rel="stylesheet" type="text/css"/>
 <title><?php
 $curtitle = $template->getTitle(true);
 echo $config->faucet_name().' - '.$curtitle; 

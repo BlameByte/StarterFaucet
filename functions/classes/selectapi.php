@@ -1,5 +1,22 @@
 <?php
 // Starter faucet selectapi, here is where the script selects which API to use based on the configuration.
+
+// The fakeapi class is basically an emulator to provide safe values.
+class fakeapi {
+	function __call($method, $args) {
+		switch($method) {
+			case 'getBalance':
+				return 0;
+			break;
+			
+			default:
+				return 'API not avaliable.';
+			break;
+		}
+	}
+}
+
+// This class allows for multiple APIs to be added with ease, and will select the one chosen in the config.
 class selectapi {
 	var $provider;
 
@@ -16,7 +33,8 @@ class selectapi {
 		break;
 		
 		default:
-			echo 'Invalid API provider selected, please review config.';
+			echo '<div class="errormsg">The API provided is not valid, please set up a valid API provider in the configuration.</div>';
+			$this->provider = new fakeapi();
 		break;
 		
 		}

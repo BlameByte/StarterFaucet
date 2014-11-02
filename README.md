@@ -18,12 +18,12 @@ Requirements
 Updates
 =============
 
-There are still things planned so expect updates over time, any issues suggestions feel free to make a request here, see the "Plans" below for planned features.
+There are still some ideas I have but I am not sure when or if they will be included, any issues or suggestions feel free to make a request here.
 
 Plans
 =============
 
-There are some planned features which will be emerging soon, which will hopefully provide you with more options as well as more customizability.
+I am not sure when (or even if I will) next update this project, but I do have some plans which could be possible in the future.
 
 * More API Providers, this is something which is a high priority, especially if it enables additional cryptocurrencies.
 * Allow a leaderboard of top donations, this would allow the top donators to be listed automatically.
@@ -33,18 +33,6 @@ About the project
 
 Starter Faucet is open source, this means that anyone can review the code, fork their own changes, and / or merge them into the master branch. The license is GPL 2, more information can be found in the LICENSE file which can be used to see what is allowed to be used with the script. I will keep a best effort to keep the code updated, bug free, add new features and provide basic support.
 
-Donations
-=============
-
-Starter Faucet is provided free of charge, so we never require any payments. But if you wish to donate to the project to allow it to stay updated and add new features, then you are free to.
-
-BTC Donation: [1epTzdH2NHN3FQSa3cDa4c1kQAHCd9nv3](bitcoin:1epTzdH2NHN3FQSa3cDa4c1kQAHCd9nv3)
-
-LTC Donation: [LWbRLdYvRagSREf7z5WDdAS1NuiQG5YSBe](litecoin:LWbRLdYvRagSREf7z5WDdAS1NuiQG5YSBe)
-
-DOGE Donation: [DTtsUnhbBF3wGgbngoowhSppnr5y8JQtCE](dogecoin:DTtsUnhbBF3wGgbngoowhSppnr5y8JQtCE)
-
-
-We only accept Bitcoins, Litecoins, and Dogecoins right now. If you are using another coin and would like to donate we recommend exchanging it into a coin above. Donations ensure that the project is kept alive and allows more time to be put into working on the project.
+It was also made to be fully function without using any database software, which elimiates a lot of hassle of setting up tables, users, permissions, etc. But you still have to do a few configuration options (located: functions/classes/configuration.php).
 
 Thanks, hope you enjoy using Starter Faucet!
